@@ -23,19 +23,19 @@ class LEDRGB:
         "off": (0, 0, 0)
     }
 
-    def __init__(self, red_led, green_led, blue_led):
+    def __init__(self, red_led, pink_led, blue_led):
         GPIO.setmode(GPIO.BCM)
         self.red_led = red_led
-        self.green_led = green_led
+        self.pink_led = pink_led
         self.blue_led = blue_led
         GPIO.setup(self.red_led, GPIO.OUT)
-        GPIO.setup(self.green_led, GPIO.OUT)
+        GPIO.setup(self.pink_led, GPIO.OUT)
         GPIO.setup(self.blue_led, GPIO.OUT)
     
     def _set_color(self, color_name):
         color = self.colors.get(color_name.lower(), self.colors["off"])
         GPIO.output(self.red_led, color[0])
-        GPIO.output(self.green_led, color[1])
+        GPIO.output(self.pink_led, color[1])
         GPIO.output(self.blue_led, color[2])
 
     def __getattr__(self, color_name):
